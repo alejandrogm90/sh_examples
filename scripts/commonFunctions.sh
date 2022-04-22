@@ -60,9 +60,23 @@ function showScriptInfo {
 
 # RETURN STRING FORMAT 
 function minor10 {
-    if [ $1 -lt 10 ] ; then 
-        echo "0"$1
-    else
-        echo $1
+    if [ ! $# -ne 1 ] ; then
+        if [ $1 -lt 10 ] ; then 
+            echo "0"$1
+        else
+            echo $1
+        fi
+    fi
+}
+
+# RETURN STRING FORMAT YYYY-MM-DD ( USES YEAR AND MONTH AS PARAMETERS )
+function getAllDatesOfOneMonth {
+    if [ ! $# -ne 2 ] && [ ! $1 -lt 1 ] &&[ ! $2 -lt 1 ] && [ ! $2 -gt 12 ] ; then
+        currentDate=$1"-"`minor10 $2`"-01"
+        currentMonth=$(date +%m --date $currentDate )
+        while [ $currentMonth -eq $(date +%m --date $currentDate ) ] ; do
+            echo $currentDate
+            currentDate=$(date +%F --date $currentDate' +1 days')            
+        done
     fi
 }

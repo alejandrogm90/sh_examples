@@ -18,6 +18,8 @@
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+export SEPARATOR_1="###############################################################################################"
+
 # SHOW THE ERROR AND END THE SCRIPT
 function showError
 {
@@ -63,13 +65,21 @@ function getStriptLocation {
 
 # SHOW SCRIPT INFORMATION 
 function showScriptInfo {
-    echo "###############################################################################################"
-    echo "#Name            : ${script_info[name]}"
-    echo "#Location        : ${script_info[location]}"
-    echo "#Description     : ${script_info[description]}"
-    echo "#Autor           : ${script_info[Autor]}"
-    echo "#Execution_Date  : `date +%Y%m%d%H%M%S`"
-    echo "#Calling         : ${script_info[calling]}"
-    echo "###############################################################################################"
+    echo "$SEPARATOR_1"
+    echo "# Name            : ${script_info[name]}"
+    echo "# Location        : ${script_info[location]}"
+    echo "# Description     : ${script_info[description]}"
+    echo "# Autor           : ${script_info[Autor]}"
+    echo "# Execution_Date  : `date +%Y%m%d%H%M%S`"
+    echo "# Calling         : ${script_info[calling]}"
+    echo "$SEPARATOR_1"
 }
 
+# RETURN STRING FORMAT 
+function minor10 {
+    if [ $1 -lt 10 ] ; then 
+        echo "0"$1
+    else
+        echo $1
+    fi
+}

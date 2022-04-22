@@ -20,7 +20,7 @@
 
 # VARIABLES Y FUNCONES
 DIR_HOME=$(cd `dirname $0` && pwd)
-source "${DIR_HOME}/commonFunctions.sh"
+source "${DIR_HOME}/scripts/commonFunctions.sh"
 SCRIPT_NAME=`getJustStriptName $0`
 export LOG_FILE="current_log"
 

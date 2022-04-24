@@ -10,7 +10,7 @@ function showError
     shift 1
     echo $*
     echo "LOG_FILE: ${LOG_FILE}"
-    if [ "${LOG_FILE}" != "" ] ; then echo " $(date -u) [ ERROR ] ( ${numError} ): $*" >> "${LOG_FILE}" ; fi
+    if [ "${LOG_FILE}" != "" ] ; then echo "`date +%F' '%T` [ ERROR ] ( ${numError} ): $*" >> "${LOG_FILE}" ; fi
     exit $numError
 } 
 
@@ -69,14 +69,23 @@ function minor10 {
     fi
 }
 
-# RETURN STRING FORMAT YYYY-MM-DD ( USES YEAR AND MONTH AS PARAMETERS )
-function getAllDatesOfOneMonth {
+# RETURN 1 IF ALL IS RIGTH ABOUT DATE SEND
+function isDateAndMonthRigth {
     if [ ! $# -ne 2 ] && [ ! $1 -lt 1 ] &&[ ! $2 -lt 1 ] && [ ! $2 -gt 12 ] ; then
-        currentDate=$1"-"`minor10 $2`"-01"
-        currentMonth=$(date +%m --date $currentDate )
-        while [ $currentMonth -eq $(date +%m --date $currentDate ) ] ; do
-            echo $currentDate
-            currentDate=$(date +%F --date $currentDate' +1 days')            
-        done
+        echo "True"
+    else
+        echo "False"
     fi
 }
+
+# RETURN STRING FORMAT YYYY-MM-DD ( USES YEAR AND MONTH AS PARAMETERS )
+function getAllDatesOfOneMonth {
+    currentDate=$1"-"`minor10 $2`"-01"
+    currentMonth=$(date +%m --date $currentDate )
+    while [ $currentMonth -eq $(date +%m --date $currentDate ) ] ; do
+        echo $currentDate
+        currentDate=$(date +%F --date $currentDate' +1 days')            
+    done
+}
+
+

@@ -16,14 +16,13 @@ export script_info=(
 
 showScriptInfo
 
-if [ $# -eq 1 ]; then 
-    extractDate $1
-else  
-    showError 1 "$(date -u) [ERROR]: Number of incorrect parameters.Must be 1 date"
-fi 
+month=$((`date +%m`))
+year=$((`date +%Y`))
 
-echo "The date passed as parameter whas: $ODATE"
-echo "The date passed as parameter transformed whas: $FECGUI"
-
-# Write an error in a LOG_FILE
-showError 0 "My error test check"
+if [ "`isDateAndMonthRigth $year $month`" == "True" ] ; then
+	getAllDatesOfOneMonth $year $month
+else
+	echo "ERROR"
+	# Write an error in a LOG_FILE
+	showError 1 "My error test check"
+fi

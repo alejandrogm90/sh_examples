@@ -70,7 +70,7 @@ function minor10 {
 }
 
 # RETURN 1 IF ALL IS RIGTH ABOUT DATE SEND
-function isDateAndMonthRigth {
+function isValidDate {
     if [ ! $# -ne 2 ] && [ ! $1 -lt 1 ] &&[ ! $2 -lt 1 ] && [ ! $2 -gt 12 ] ; then
         echo "True"
     else

@@ -19,10 +19,20 @@ showScriptInfo
 month=$((`date +%m`))
 year=$((`date +%Y`))
 
-if [ "`isDateAndMonthRigth $year $month`" == "True" ] ; then
+if [ "`isValidDate $year $month`" == "True" ] ; then
 	getAllDatesOfOneMonth $year $month
 else
 	echo "ERROR"
 	# Write an error in a LOG_FILE
 	showError 1 "My error test check"
 fi
+
+echo ""
+echo ""
+
+./scripts/tiposDeDatos.sh a b c d e f g h i j k l
+
+echo ""
+echo ""
+
+./scripts/tree2.sh /dev

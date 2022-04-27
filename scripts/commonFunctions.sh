@@ -100,20 +100,16 @@ function getAllDatesWorkables {
 
 # RETURN STRING FORMAT YYYY-MM-DD LAST WORKABLE DATE ( USES YEAR AND MONTH AS PARAMETERS )
 function lastDateWorkableOfMonth {
-    lastDay=""
-    for currentDay in `getAllDatesWorkables $1 $2` ; do
-        lastDay=$currentDay
-    done
-    echo $lastDay
+    allDays=(`getAllDatesWorkables $1 $2`)
+    lastPosition=$(( ${#allDays[*]} - 1 ))
+    echo ${allDays[$lastPosition]}
 }
 
 # RETURN STRING FORMAT YYYY-MM-DD LAST DATE ( USES YEAR AND MONTH AS PARAMETERS )
 function lastDateOfMonth {
-    lastDay=""
-    for currentDay in `getAllDatesOfOneMonth $1 $2` ; do
-        lastDay=$currentDay
-    done
-    echo $lastDay
+    allDays=(`getAllDatesOfOneMonth $1 $2`)
+    lastPosition=$(( ${#allDays[*]} - 1 ))
+    echo ${allDays[$lastPosition]}
 }
 
 # RETURN REVERSE LIST

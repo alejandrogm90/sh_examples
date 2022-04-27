@@ -30,6 +30,12 @@ fi
 echo ""
 echo ""
 
+reverseDays=`getAllDatesWorkables $year $month`
+reverseList $reverseDays
+
+echo ""
+echo ""
+
 ./scripts/tiposDeDatos.sh a b c d e f g h i j k l
 
 echo ""

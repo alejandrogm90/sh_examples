@@ -4,8 +4,7 @@
 export SEPARATOR_1="###############################################################################################"
 
 # SHOW THE ERROR AND END THE SCRIPT
-function showError
-{
+function showError {
     numError=${1}
     shift 1
     echo $*
@@ -15,8 +14,7 @@ function showError
 } 
 
 # TEXT WITH FORMAT ACCORDING TO THE FIRST PARAMETER 
-function textWithFormat
-{
+function textWithFormat {
     if [ ${1} -eq 1 ] ; then
         shift 1
         echo "$*"

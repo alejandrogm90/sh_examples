@@ -115,3 +115,11 @@ function lastDateOfMonth {
     done
     echo $lastDay
 }
+
+# RETURN REVERSE LIST
+function reverseList {
+    valores=($*)
+    for indice in `seq $# -1 1` ; do
+        echo ${valores[$indice]}
+    done
+}

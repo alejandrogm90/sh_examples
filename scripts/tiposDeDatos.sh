@@ -21,6 +21,9 @@ valores[3]="amarillo"
 # mostramos el indice 0
 printf "\nMostramos el indice 0: %s \n" ${valores[0]}
 
+# tamaño del array
+printf "\nMostramos el tamaño del array: %s \n" ${#valores[*]}     
+
 # mostramos los indices y sus valores
 printf "\nMostramos todos los indices con sus valores \n"
 for indice in ${!valores[*]} ; do

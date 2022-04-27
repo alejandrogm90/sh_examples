@@ -70,10 +70,9 @@ function minor10 {
 # RETURN 1 IF ALL IS RIGTH ABOUT DATE SEND
 function isValidDate {
     if [ ! $# -ne 2 ] && [ ! $1 -lt 1 ] &&[ ! $2 -lt 1 ] && [ ! $2 -gt 12 ] ; then
-        echo "True"
-    else
-        echo "False"
+        return 1
     fi
+    return 0
 }
 
 # RETURN STRING FORMAT YYYY-MM-DD ( USES YEAR AND MONTH AS PARAMETERS )
@@ -91,7 +90,7 @@ function getAllDatesWorkables {
     for currentDay in `getAllDatesOfOneMonth $1 $2` ; do
         currentDayText=$(date +%a --date $currentDay )
         if [ "$currentDayText" != "Sun" ] && [ "$currentDayText" != "Sat" ] ; then
-            echo "$currentDayText - $currentDay"
+            echo $currentDay
         fi
     done
 }

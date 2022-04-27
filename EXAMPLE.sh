@@ -19,10 +19,9 @@ showScriptInfo
 month=$((`date +%m`))
 year=$((`date +%Y`))
 
-if [ "`isValidDate $year $month`" == "True" ] ; then
+if isValidDate $year $montn ; then
 	getAllDatesOfOneMonth $year $month
 else
-	echo "ERROR"
 	# Write an error in a LOG_FILE
 	showError 1 "My error test check"
 fi
@@ -30,8 +29,7 @@ fi
 echo ""
 echo ""
 
-reverseDays=`getAllDatesWorkables $year $month`
-reverseList $reverseDays
+reverseList `getAllDatesWorkables $year $month`
 
 echo ""
 echo ""

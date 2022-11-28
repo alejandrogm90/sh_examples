@@ -1,1 +1,2 @@
-current_log
+*.log
+*.tar.gz

@@ -3,15 +3,49 @@
 # GLOBAL VARIABLES
 export SEPARATOR_1="###############################################################################################"
 
+# SHOW INFO
+function showMsg {
+    tipeLine=$1
+    shift 1
+    headLine="[`date +%F'_'%T`][$tipeLine]:"
+    echo "$headLine $*"
+    if [ "${LOG_FILE}" != "" ] ; then 
+        echo "$headLine $*" >> "${LOG_FILE}"    
+    fi
+}
+
+# SHOW INFO
+function showInfo {
+    showMsg INFO $*
+}
+
+# SHOW WARN
+function showWarn {
+    showMsg WARN $*
+}
+
 # SHOW THE ERROR AND END THE SCRIPT
 function showError {
     numError=${1}
     shift 1
-    echo $*
-    echo "LOG_FILE: ${LOG_FILE}"
-    if [ "${LOG_FILE}" != "" ] ; then echo "`date +%F' '%T` [ ERROR ] ( ${numError} ): $*" >> "${LOG_FILE}" ; fi
+    echo "[`date +%F'_'%T`][ERROR][${numError}]: $*"
+    if [ "${LOG_FILE}" != "" ] ; then 
+        echo "[`date +%F'_'%T`][ERROR][${numError}]: $*" >> "${LOG_FILE}"    
+    fi
     exit $numError
 } 
+
+# SHOW SCRIPT INFORMATION 
+function showScriptInfo {
+    echo "$SEPARATOR_1"
+    echo "# Name            : ${script_info[name]}"
+    echo "# Location        : ${script_info[location]}"
+    echo "# Description     : ${script_info[description]}"
+    echo "# Autor           : ${script_info[Autor]}"
+    echo "# Execution_Date  : `date +%Y%m%d%H%M%S`"
+    echo "# Calling         : ${script_info[calling]}"
+    echo "$SEPARATOR_1"
+}
 
 # TEXT WITH FORMAT ACCORDING TO THE FIRST PARAMETER 
 function textWithFormat {
@@ -42,18 +76,6 @@ function getJustStriptName {
 # RETURN THE SCRIPT LOCATION
 function getStriptLocation {
     echo $(cd `dirname $*` && pwd)
-}
-
-# SHOW SCRIPT INFORMATION 
-function showScriptInfo {
-    echo "$SEPARATOR_1"
-    echo "# Name            : ${script_info[name]}"
-    echo "# Location        : ${script_info[location]}"
-    echo "# Description     : ${script_info[description]}"
-    echo "# Autor           : ${script_info[Autor]}"
-    echo "# Execution_Date  : `date +%Y%m%d%H%M%S`"
-    echo "# Calling         : ${script_info[calling]}"
-    echo "$SEPARATOR_1"
 }
 
 # RETURN STRING FORMAT 

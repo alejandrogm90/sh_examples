@@ -42,7 +42,7 @@ function showScriptInfo {
     echo "# Location        : ${script_info[location]}"
     echo "# Description     : ${script_info[description]}"
     echo "# Autor           : ${script_info[Autor]}"
-    echo "# Execution_Date  : `date +%Y%m%d%H%M%S`"
+    echo "# Execution_Date  : `date +"%Y-%m-%d %H:%M:%S"`"
     echo "# Calling         : ${script_info[calling]}"
     echo "$SEPARATOR_1"
 }

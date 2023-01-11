@@ -17,6 +17,21 @@
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# VARIABLES Y FUNCONES
+DIR_HOME=$(cd `dirname $0` && pwd)
+source "${DIR_HOME}/commonFunctions.sh"
+SCRIPT_NAME=`getJustStriptName $0`
+
+declare -A script_info
+export script_info=(
+	[name]="${SCRIPT_NAME}"
+	[location]="${DIR_HOME}"
+	[description]="Create your own DEBIAN Package"
+	[calling]="./`getStriptName $0` "
+)
+
+showScriptInfo
+
 #VARIABLES
 accion=0
 

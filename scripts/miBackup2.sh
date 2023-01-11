@@ -1,17 +1,16 @@
 #!/bin/bash
 
-# VARIABLES AND FUNCTIONS
+# VARIABLES Y FUNCONES
 DIR_HOME=$(cd `dirname $0` && pwd)
 source "${DIR_HOME}/commonFunctions.sh"
 SCRIPT_NAME=`getJustStriptName $0`
-#export LOG_FILE="${SCRIPT_NAME}_`date +%F`.log"
 
 declare -A script_info
 export script_info=(
-	[name]="${SCRIPT_NAME}" 
-	[location]="${DIR_HOME}" 
-	[description]="My large description" 
-	[calling]="./`getStriptName $0`"
+	[name]="${SCRIPT_NAME}"
+	[location]="${DIR_HOME}"
+	[description]="Create a backup"
+	[calling]="./`getStriptName $0` "
 )
 
 showScriptInfo

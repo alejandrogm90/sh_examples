@@ -3,7 +3,7 @@
 # VARIABLES Y FUNCONES
 DIR_HOME=$(cd `dirname $0` && pwd)
 source "${DIR_HOME}/commonFunctions.sh"
-SCRIPT_NAME=`getStriptNameWithoutExtension $0`
+SCRIPT_NAME=`getJustStriptName $0`
 ficheroTemporal="/tmp/`echo "$0" | cut -d'/' -f5`.tmp"
 lineasFicheroTemporal=0
 
@@ -11,7 +11,7 @@ declare -A script_info
 export script_info=(
 	[name]="${SCRIPT_NAME}" 
 	[location]="${DIR_HOME}" 
-	[description]="My large description" 
+	[description]="Raplaces all file names in a directory for a string"
 	[calling]="./`getStriptName $0` [DIRECTORIO] [CADENA-ORIGINAL] [CADENA-SUSTITUTA]"
 )
 

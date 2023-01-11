@@ -6,5 +6,5 @@ vacas=(`ls /usr/share/cowsay/cows`)
 TVACAS=${#vacas[*]}
 NVACA=$((RANDOM%$TVACAS))
 vaca=${vacas[$NVACA]}
-figlet "Hola mundo"
+figlet "`whoami`"
 fortune | cowsay -f $vaca

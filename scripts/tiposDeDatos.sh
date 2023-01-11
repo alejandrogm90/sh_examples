@@ -1,5 +1,20 @@
 #! /bin/bash
 
+# VARIABLES Y FUNCONES
+DIR_HOME=$(cd `dirname $0` && pwd)
+source "${DIR_HOME}/commonFunctions.sh"
+SCRIPT_NAME=`getJustStriptName $0`
+
+declare -A script_info
+export script_info=(
+	[name]="${SCRIPT_NAME}"
+	[location]="${DIR_HOME}"
+	[description]="Example of some tipes of data"
+	[calling]="./`getStriptName $0` "
+)
+
+showScriptInfo
+
 # a b c d e f g h i j k l
 echo '$# ' $#
 echo '$@ ' $@

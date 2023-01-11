@@ -17,9 +17,22 @@
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# VARIABLES GLOBALES
+# VARIABLES Y FUNCONES
 COMPARTIDA="/opt/COMPARTIDA"
 dirBIN=$COMPARTIDA"/PROYECTOS/myBIN/bin"
+DIR_HOME=$(cd `dirname $0` && pwd)
+source "${DIR_HOME}/commonFunctions.sh"
+SCRIPT_NAME=`getJustStriptName $0`
+
+declare -A script_info
+export script_info=(
+	[name]="${SCRIPT_NAME}"
+	[location]="${DIR_HOME}"
+	[description]="Shows some use full info"
+	[calling]="./`getStriptName $0` "
+)
+
+showScriptInfo
 
 #Muestra versión de linux
 lsb_release -a

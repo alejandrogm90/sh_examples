@@ -18,9 +18,15 @@ showScriptInfo
 if [ -f "pom.xml" ] ; then 
 	mvn clean
 	wait $!
-	[ $? -ne 0 ] && { echo "No ha limpiado bien." ; exit 1 }
+	if [ $? -ne 0 ] ; then 
+		showError 1 "No ha limpiado bien."
+	fi
 	# En windows -DskipTests=false
-	mvn package -Dmaven.test.skip=true  
+	mvn -Dmaven.test.skip=true \
+	-Dmaven.wagon.http.ssl.insecure=true \
+	-Dmaven.wagon.http.ssl.allowall=true \
+	-Dmaven.wagon.http.ssl.ignore.validity.dates=true \
+	install
 else
 	echo 'El fichero pom.xml no existe.'
 fi

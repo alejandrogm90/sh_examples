@@ -15,4 +15,4 @@ export script_info=(
 
 showScriptInfo
 
-rsync -avz --delete $1 $2
+rsync -avz --delete "$1" "$2"

@@ -18,6 +18,6 @@ showScriptInfo
 if [ $# -eq 1 ] ; then
 	sudo arping -fI wlp5s0b1 $1 | grep "]" | cut -d'[' -f2 | cut -d']' -f1
 else
-	echo 'ERROR:'
-	echo $0' [IP]'
+	showInfo 'ERROR:'
+	showInfo "$0"' [IP]'
 fi

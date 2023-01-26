@@ -10,7 +10,7 @@ declare -A script_info
 export script_info=(
 	[name]="${SCRIPT_NAME}" 
 	[location]="${DIR_HOME}" 
-	[description]="My large description" 
+	[description]="Example of use" 
 	[calling]="./`getStriptName $0` yyyymmdd"
 )
 
@@ -40,3 +40,8 @@ echo ""
 echo ""
 
 ./scripts/tree2.sh /dev
+
+echo ""
+echo ""
+
+./scripts/informe.sh

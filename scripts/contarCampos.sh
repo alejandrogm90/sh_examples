@@ -31,13 +31,13 @@ if [ $# -eq 2 ]; then
     if [ -d "$1" ] ; then
         START_DIR="$1"
         ELEMENTOS=`cat $2`
-        echo "ELEMENTOS: "$ELEMENTOS
-        echo "TOTAL DE ELEMENTOS: "`echo $ELEMENTOS | wc -w`
+        showInfo "ELEMENTOS: "$ELEMENTOS
+        showInfo "TOTAL DE ELEMENTOS: "`echo $ELEMENTOS | wc -w`
         for csvFile in `ls $START_DIR/*.csv` ; do 
-            echo "$csvFile "`numCoincidencias $csvFile $ELEMENTOS` 
+            showInfo "$csvFile "`numCoincidencias $csvFile $ELEMENTOS`
         done
     else 
-        echo "$1 no es un directorio o no existe." 
+        showInfo "$1 no es un directorio o no existe."
     fi
 else  
     showError 1 "$(date -u) [ERROR]: Number of incorrect parameters.Must be 1 date"

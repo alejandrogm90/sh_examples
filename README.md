@@ -6,7 +6,7 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 # Welcome to sh_examples
-Simple examples of shell scripts
+Simple examples of ssh
 
 ## Bibliography ##
 - Linux [Official Website](https://www.linux.org/)

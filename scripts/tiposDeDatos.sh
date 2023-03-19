@@ -44,3 +44,16 @@ printf "\nMostramos todos los indices con sus valores \n"
 for indice in ${!valores[*]} ; do
     printf "%4d: %s\n" $indice ${valores[$indice]}
 done
+
+case $1 in
+  "a")
+    echo "A"
+    ;;
+
+  "b")
+    echo "B"
+    ;;
+  *)
+    echo "Other"
+    ;;
+esac

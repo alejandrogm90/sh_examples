@@ -17,23 +17,23 @@
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # VARIABLES Y FUNCONES
-DIR_HOME=$(cd `dirname $0` && pwd)
+DIR_HOME=$(cd $(dirname $0) && pwd)
 source "${DIR_HOME}/commonFunctions.sh"
-SCRIPT_NAME=`getJustStriptName $0`
+SCRIPT_NAME=$(getJustStriptName $0)
 
 declare -A script_info
 export script_info=(
-	[name]="${SCRIPT_NAME}" 
-	[location]="${DIR_HOME}" 
-	[description]="My large description" 
-	[calling]="./`getStriptName $0` "
+    [name]="${SCRIPT_NAME}"
+    [location]="${DIR_HOME}"
+    [description]="My large description"
+    [calling]="./$(getStriptName $0) "
 )
 
 showScriptInfo
 
-if [ $# -eq 1 ] ; then
-	sudo arping -fI wlp5s0b1 $1 | grep "]" | cut -d'[' -f2 | cut -d']' -f1
+if [ $# -eq 1 ]; then
+    sudo arping -fI wlp5s0b1 $1 | grep "]" | cut -d'[' -f2 | cut -d']' -f1
 else
-	showInfo 'ERROR:'
-	showInfo "$0"' [IP]'
+    showInfo 'ERROR:'
+    showInfo "$0"' [IP]'
 fi

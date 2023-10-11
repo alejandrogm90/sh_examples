@@ -1,3 +1,6 @@
 *.log
 *.tar.gz
+
+# IDEs
 .idea/
+.vscode/

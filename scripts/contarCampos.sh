@@ -17,16 +17,16 @@
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # VARIABLES Y FUNCONES
-DIR_HOME=$(cd `dirname $0` && pwd)
+DIR_HOME=$(cd $(dirname $0) && pwd)
 source "${DIR_HOME}/commonFunctions.sh"
-SCRIPT_NAME=`getJustStriptName $0`
+SCRIPT_NAME=$(getJustStriptName $0)
 
 declare -A script_info
 export script_info=(
-	[name]="${SCRIPT_NAME}" 
-	[location]="${DIR_HOME}" 
-	[description]="My large description" 
-	[calling]="./`getStriptName $0` DIR FILE"
+    [name]="${SCRIPT_NAME}"
+    [location]="${DIR_HOME}"
+    [description]="My large description"
+    [calling]="./$(getStriptName $0) DIR FILE"
 )
 
 showScriptInfo
@@ -35,26 +35,26 @@ function numCoincidencias() {
     fileName=$1
     shift 1
     numTotal=0
-    for elemento in $* ; do 
-        if [ "`cat $fileName | grep $elemento`" != "" ] ; then
-            numTotal=$(( $numTotal + 1 ))
+    for elemento in $*; do
+        if [ "$(cat $fileName | grep $elemento)" != "" ]; then
+            numTotal=$(($numTotal + 1))
         fi
     done
     echo $numTotal
 }
 
-if [ $# -eq 2 ]; then 
-    if [ -d "$1" ] ; then
+if [ $# -eq 2 ]; then
+    if [ -d "$1" ]; then
         START_DIR="$1"
-        ELEMENTOS=`cat $2`
+        ELEMENTOS=$(cat $2)
         showInfo "ELEMENTOS: "$ELEMENTOS
-        showInfo "TOTAL DE ELEMENTOS: "`echo $ELEMENTOS | wc -w`
-        for csvFile in `ls $START_DIR/*.csv` ; do 
-            showInfo "$csvFile "`numCoincidencias $csvFile $ELEMENTOS`
+        showInfo "TOTAL DE ELEMENTOS: "$(echo $ELEMENTOS | wc -w)
+        for csvFile in $(ls $START_DIR/*.csv); do
+            showInfo "$csvFile "$(numCoincidencias $csvFile $ELEMENTOS)
         done
-    else 
+    else
         showInfo "$1 no es un directorio o no existe."
     fi
-else  
+else
     showError 1 "$(date -u) [ERROR]: Number of incorrect parameters.Must be 1 date"
-fi 
+fi

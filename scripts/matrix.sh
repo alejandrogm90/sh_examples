@@ -16,7 +16,7 @@
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# VARIABLES Y FUNCONES
+# VARIABLES
 DIR_HOME=$(cd $(dirname $0) && pwd)
 source "${DIR_HOME}/commonFunctions.sh"
 SCRIPT_NAME=$(getJustStriptName $0)
@@ -31,26 +31,20 @@ export script_info=(
 
 showScriptInfo
 
-dir1="${DIR_HOME}"
-dir2=""
-texto1=""
-numF=0
-numA=0
+dir1=~/bin
 
 if [ -d "$dir1" ]; then
-    dir2=($(ls $dir1))
-    echo $dir2
-    numF=${#dir2[*]}
-    numA=$numF
-    for f1 in $(ls $dir1); do
-        dir2="$dir1/$f1"
-        echo $dir2
-        cat $dir2
-        texto1=$texto1'#'
-        numA=$(($numA - 1))
-        echo 'Progress '$texto1' [ %'$((100 - (($numA * 100) / $numF)))' ]'
+    texto=""
+    lista_ficheros=($(ls "$dir1"))
+    numero_ficeros=${#lista_ficheros[*]}
+    numero_actual=$numero_ficeros
+    for indice in ${!lista_ficheros[*]}; do
+        cat "$dir1/${lista_ficheros[$indice]}"
+        numero_actual=$(($numero_actual - 1))
+        texto="$texto#"
+        echo "Progress $texto [ %"$((100 - (($numero_actual * 100) / $numero_ficeros)))' ]'
         sleep 1
     done
 else
-    echo "No existe "$dir1
+    echo "No existe $dir1"
 fi

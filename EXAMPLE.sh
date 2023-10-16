@@ -1,6 +1,12 @@
 #!/bin/bash
 
-# VARIABLES Y FUNCONES
+# FUNCIONES
+function my_space {
+    echo ""
+    echo ""
+}
+
+# VARIABLES
 DIR_HOME=$(cd $(dirname $0) && pwd)
 source "${DIR_HOME}/scripts/commonFunctions.sh"
 SCRIPT_NAME=$(getJustStriptName $0)
@@ -26,17 +32,14 @@ else
     showError 1 "My error test check"
 fi
 
-echo ""
-echo ""
+my_space
 
 reverseList $(getAllDatesWorkables $year $month)
 
-echo ""
-echo ""
+my_space
 
 ./scripts/tiposDeDatos.sh a b c d e f g h i j k l
 
-echo ""
-echo ""
+my_space
 
 ./scripts/tree2.sh /dev

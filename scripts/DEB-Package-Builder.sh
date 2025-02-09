@@ -26,7 +26,7 @@ export script_info=(
     [name]="${SCRIPT_NAME}"
     [location]="${DIR_HOME}"
     [description]="Create your own DEBIAN Package"
-    [calling]="./$(getStriptName $0) "
+    [calling]="./$(getScriptName $0) "
 )
 
 showScriptInfo

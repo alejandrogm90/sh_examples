@@ -11,7 +11,7 @@ export script_info=(
     [name]="${SCRIPT_NAME}"
     [location]="${DIR_HOME}"
     [description]="Example of use"
-    [calling]="./$(getStriptName $0) yyyymmdd"
+    [calling]="./$(getScriptName $0) yyyymmdd"
 )
 
 showScriptInfo

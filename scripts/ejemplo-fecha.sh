@@ -26,7 +26,7 @@ export script_info=(
     [name]="${SCRIPT_NAME}"
     [location]="${DIR_HOME}"
     [description]="A example of date types usage"
-    [calling]="./$(getStriptName $0) "
+    [calling]="./$(getScriptName $0) "
 )
 
 showScriptInfo

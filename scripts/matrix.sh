@@ -26,7 +26,7 @@ export script_info=(
     [name]="${SCRIPT_NAME}"
     [location]="${DIR_HOME}"
     [description]="My large description"
-    [calling]="./$(getStriptName $0) DIR FILE"
+    [calling]="./$(getScriptName $0) DIR FILE"
 )
 
 showScriptInfo

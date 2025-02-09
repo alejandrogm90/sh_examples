@@ -19,8 +19,8 @@
 # GLOBAL VARIABLES
 export SEPARATOR_1="###############################################################################################"
 
-# SHOW INFO
 function showMsg {
+    # SHOW INFO
     tipeLine=$1
     shift 1
     headLine="[$(date +%F'_'%T)][$tipeLine]:"
@@ -30,18 +30,18 @@ function showMsg {
     fi
 }
 
-# SHOW INFO
 function showInfo {
+    # SHOW INFO
     showMsg INFO $*
 }
 
-# SHOW WARN
 function showWarn {
+    # SHOW WARN
     showMsg WARN $*
 }
 
-# SHOW THE ERROR AND END THE SCRIPT
 function showError {
+    # SHOW THE ERROR AND END THE SCRIPT
     numError=${1}
     shift 1
     echo "[$(date +%F'_'%T)][ERROR][${numError}]: $*"
@@ -51,8 +51,8 @@ function showError {
     exit $numError
 }
 
-# SHOW SCRIPT INFORMATION
 function showScriptInfo {
+    # SHOW SCRIPT INFORMATION
     echo "$SEPARATOR_1"
     echo "# Name            : ${script_info[name]}"
     echo "# Location        : ${script_info[location]}"
@@ -63,8 +63,8 @@ function showScriptInfo {
     echo "$SEPARATOR_1"
 }
 
-# TEXT WITH FORMAT ACCORDING TO THE FIRST PARAMETER
 function textWithFormat {
+    # TEXT WITH FORMAT ACCORDING TO THE FIRST PARAMETER
     if [ ${1} -eq 1 ]; then
         shift 1
         echo "$*"
@@ -78,24 +78,24 @@ function textWithFormat {
     fi
 }
 
-# RETURN THE NAME OF THE SCRIPT
-function getStriptName {
+function getScriptName {
+    # RETURN THE NAME OF THE SCRIPT
     echo "${*##*/}"
 }
 
-# RETURN THE NAME OF THE SCRIPT WITHOUT EXTENSION
 function getJustStriptName {
-    name=$(getStriptName $*)
+    # RETURN THE NAME OF THE SCRIPT WITHOUT EXTENSION
+    name=$(getScriptName $*)
     echo "${name%.*}"
 }
 
-# RETURN THE SCRIPT LOCATION
-function getStriptLocation {
+function getScriptLocation {
+    # RETURN THE SCRIPT LOCATION
     echo $(cd $(dirname $*) && pwd)
 }
 
-# RETURN STRING FORMAT
 function minor10 {
+    # RETURN STRING FORMAT
     if [ ! $# -ne 1 ]; then
         if [ $1 -lt 10 ]; then
             echo "0"$1
@@ -105,16 +105,16 @@ function minor10 {
     fi
 }
 
-# RETURN 1 IF ALL IS RIGTH ABOUT DATE SEND
 function isValidDate {
+    # RETURN 1 IF ALL IS RIGHT ABOUT DATE SEND
     if [ ! $# -ne 2 ] && [ ! $1 -lt 1 ] && [ ! $2 -lt 1 ] && [ ! $2 -gt 12 ]; then
         return 1
     fi
     return 0
 }
 
-# RETURN STRING FORMAT YYYY-MM-DD ( USES YEAR AND MONTH AS PARAMETERS )
 function getAllDatesOfOneMonth {
+    # RETURN STRING FORMAT YYYY-MM-DD ( USES YEAR AND MONTH AS PARAMETERS )
     currentDate=$1"-"$(minor10 $2)"-01"
     currentMonth=$(date +%m --date $currentDate)
     while [ $currentMonth -eq $(date +%m --date $currentDate) ]; do
@@ -123,8 +123,8 @@ function getAllDatesOfOneMonth {
     done
 }
 
-# RETURN STRING FORMAT YYYY-MM-DD WORKABLE DAYS ( USES YEAR AND MONTH AS PARAMETERS )
 function getAllDatesWorkables {
+    # RETURN STRING FORMAT YYYY-MM-DD WORKABLE DAYS ( USES YEAR AND MONTH AS PARAMETERS )
     for currentDay in $(getAllDatesOfOneMonth $1 $2); do
         currentDayText=$(date +%a --date $currentDay)
         if [ "$currentDayText" != "Sun" ] && [ "$currentDayText" != "Sat" ]; then
@@ -133,29 +133,42 @@ function getAllDatesWorkables {
     done
 }
 
-# RETURN STRING FORMAT YYYY-MM-DD LAST WORKABLE DATE ( USES YEAR AND MONTH AS PARAMETERS )
 function lastDateWorkableOfMonth {
+    # RETURN STRING FORMAT YYYY-MM-DD LAST WORKABLE DATE ( USES YEAR AND MONTH AS PARAMETERS )
     allDays=($(getAllDatesWorkables $1 $2))
     lastPosition=$((${#allDays[*]} - 1))
     echo ${allDays[$lastPosition]}
 }
 
-# RETURN STRING FORMAT YYYY-MM-DD LAST DATE ( USES YEAR AND MONTH AS PARAMETERS )
 function lastDateOfMonth {
-    allDays=($(getAllDatesOfOneMonth $1 $2))
+    # RETURN STRING FORMAT YYYY-MM-DD LAST DATE ( USES YEAR AND MONTH AS PARAMETERS )
+    allDays=$(getAllDatesOfOneMonth $1 $2)
     lastPosition=$((${#allDays[*]} - 1))
     echo ${allDays[$lastPosition]}
 }
 
-# RETURN REVERSE LIST
 function reverseList {
+    # RETURN REVERSE LIST
     valores=($*)
-    for indice in $(seq $# -1 1); do
+    for indice in $(seq $# -1 0); do
         echo ${valores[$indice]}
     done
 }
 
-# RETUR THE VALUE FROM A JSON FILE
 function getValueFromJsonFileStructured() {
-    echo "$(cat $1 | grep $2 | cut -d'"' -f2)"
+    # RETURN THE VALUE FROM A JSON FILE
+    CADENA=$(cat $1 | grep $2 | cut -d'"' -f2)
+    echo "$CADENA"
+}
+
+function getLocalIp() {
+    # Get local IP
+    CADENA=$(ip addr show | grep "inet " | grep -v "127.0.0.1" | head -1 | awk '{print $2}' | cut -d/ -f1)
+    echo "$CADENA"
+}
+
+function getRouterIp() {
+    # Get router IP
+    CADENA=$(ip route show default | grep "default" | awk '{print $3}')
+    echo "$CADENA"
 }

@@ -28,7 +28,7 @@ export script_info=(
     [name]="${SCRIPT_NAME}"
     [location]="${DIR_HOME}"
     [description]="Raplaces all file names in a directory for a string"
-    [calling]="./$(getStriptName $0) [DIRECTORIO] [CADENA-ORIGINAL] [CADENA-SUSTITUTA]"
+    [calling]="./$(getScriptName $0) [DIRECTORIO] [CADENA-ORIGINAL] [CADENA-SUSTITUTA]"
 )
 
 showScriptInfo

@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # VARIABLES
-DIR_HOME=$(cd $(dirname $0) && pwd)
+DIR_PROYECTOS="$HOME/Proyectos"
+DIR_HOME=$(cd "$(dirname "$0")" && pwd)
 source "${DIR_HOME}/commonFunctions.sh"
-SCRIPT_NAME=$(getJustStriptName $0)
+SCRIPT_NAME=$(getJustStriptName "$0")
 export LOG_FILE="current_log"
 
 declare -A script_info
@@ -11,7 +12,7 @@ export script_info=(
     [name]="${SCRIPT_NAME}"
     [location]="${DIR_HOME}"
     [description]="Example of use"
-    [calling]="./$(getScriptName $0) yyyymmdd"
+    [calling]="./$(getScriptName "$0")"
 )
 
 showScriptInfo
@@ -23,16 +24,17 @@ function my_space {
     echo "Actualizando $1"
 }
 
-lista_proyectos=($(ls "$HOME/Proyectos"))
+lista_proyectos=("$(ls "$DIR_PROYECTOS")")
 for indice in ${!lista_proyectos[*]} ; do
-    project="$HOME/Proyectos/${lista_proyectos[$indice]}/"
+    project="$DIR_PROYECTOS/${lista_proyectos[$indice]}/"
     echo "$project"
     if [ -d "$project" ] ; then
         my_space "$project"
         cd "$project"
-        git pull 2>> /dev/null
+        #git pull 2>> /dev/null
         if [ -f "update_modules.sh" ] ; then
             ./update_modules.sh
         fi
+        cd ../
     fi
 done
